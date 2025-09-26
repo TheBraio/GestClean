@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/flask_message.css') }}">
+<script src="{{ url_for('static', filename='scripts/flask_message.js') }}"></script>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="toast {{ category }}" id="toast-{{ loop.index }}">
+                    <div class="toast-content">
+                        <p class="toast-message">{{ message }}</p>
+                    </div>
+                    <button class="toast-close">×</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+

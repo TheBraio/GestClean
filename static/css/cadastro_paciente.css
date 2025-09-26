@@ -1,0 +1,528 @@
+/* Estilos específicos para a página de cadastro */
+.body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.campo {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="tel"],
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Container dos botões */
+.botoes-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* Botão Salvar */
+.btn-salvar {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    min-width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-salvar:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #1a9f7a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.btn-salvar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+/* Botão Cancelar */
+.btn-cancelar {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+    min-width: 150px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-cancelar:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #343a40 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-cancelar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(108, 117, 125, 0.3);
+}
+
+/* Botão Adicionar Arquivo */
+
+.btn-add {
+    background-color: #01b328;
+    color: white;
+    border: 1px solid #01b328;
+}
+
+.btn-add:hover {
+    background-color: #01a324;
+    border-color: #01a324;
+}
+
+.btn-add-arquivo {
+    margin-top: 10px
+}
+
+/* Estilo antigo do botão submit (mantido para compatibilidade) */
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #1e7e34;
+}
+
+.btn {
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+        margin: 10px auto;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    section {
+        padding: 10px;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .botoes-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn-salvar,
+    .btn-cancelar {
+        width: 100%;
+        max-width: 300px;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 98%;
+        padding: 15px;
+        margin: 5px auto;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    h2 {
+        font-size: 18px;
+    }
+    
+    section {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .campo {
+        margin-bottom: 10px;
+    }
+    
+    label {
+        font-size: 14px;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"] {
+        font-size: 13px;
+        padding: 6px;
+    }
+    
+    .btn-salvar,
+    .btn-cancelar {
+        font-size: 13px;
+        padding: 8px 16px;
+        min-width: 120px;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 320px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    h1 {
+        font-size: 18px;
+    }
+    
+    h2 {
+        font-size: 16px;
+    }
+    
+    section {
+        padding: 5px;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"] {
+        font-size: 12px;
+        padding: 5px;
+    }
+    
+    .btn-salvar,
+    .btn-cancelar {
+        font-size: 12px;
+        padding: 6px 12px;
+        min-width: 100px;
+    }
+}
+
+
+
+/* Modal de Arquivo*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-arquivo {
+    display: none;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px 25px 20px 25px;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.close {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close:hover {
+    color: #333;
+}
+
+.form-pop .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-pop label {
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-pop input[type="text"],
+.form-pop input[type="file"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-cancelar-modal {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+    min-width: 150px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-cancelar-modal:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #343a40 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-cancelar-modal:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(108, 117, 125, 0.3);
+}
+
+.btn-salvar-modal {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    min-width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-salvar-modal:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #1a9f7a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.btn-salvar-modal:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+
+/* Container de arquivos */
+.files-list-container {
+    margin-top: 20px;
+    border-top: 1px solid #eee; /* Linha divisória sutil */
+    padding-top: 20px;
+    display: grid; /* Usar grid para alinhar os itens em colunas */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Colunas responsivas */
+    gap: 15px; /* Espaçamento entre os containers de arquivo */
+    justify-content: center; /* Centraliza os itens na grid */
+}
+
+/* Estilo para cada container de arquivo individual */
+.file-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Bordas mais arredondadas para um visual mais suave */
+    padding: 15px;
+    position: relative; /* Para posicionar o botão de remover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: left; /* Alinha o texto dentro do container */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.file-item:hover {
+    transform: translateY(-3px); /* Leve elevação ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file-info {
+    margin: 5px 0; /* Espaço entre as linhas de Nome e Arquivo */
+    font-size: 0.95em;
+    color: #555;
+}
+
+.file-info .label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px; /* Espaço entre o label e o conteúdo */
+}
+
+/* Estilo para o nome do arquivo, para lidar com texto longo */
+.file-name, .file-title {
+    display: inline-block; /* Permite que o span tenha width */
+    max-width: calc(100% - 70px); /* Ajusta para deixar espaço para o botão X e o label */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle; /* Alinha com o label */
+}
+
+
+.remove-file-button {
+    background-color: #dc3545; /* Vermelho para exclusão */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Botão redondo */
+    width: 28px; /* Um pouco maior */
+    height: 28px; /* Um pouco maior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute; /* Posição absoluta para o canto superior direito */
+    top: 8px;
+    right: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para o botão */
+}
+
+.remove-file-button:hover {
+    background-color: #c82333;
+    transform: scale(1.05); /* Pequeno aumento no hover */
+}

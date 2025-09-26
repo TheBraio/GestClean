@@ -1,0 +1,133 @@
+body {
+    background: #f7f7f7;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.config-page {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px 40px;
+}
+
+.config-page h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: #333;
+}
+
+.config-section {
+    margin-bottom: 36px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eee;
+}
+.config-section:last-child {
+    border-bottom: none;
+}
+.config-section h2 {
+    color: #0078d7;
+    margin-bottom: 18px;
+    font-size: 1.2rem;
+}
+
+.config-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 32px;
+    margin-bottom: 12px;
+}
+.config-form label {
+    grid-column: span 2;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+.config-form input,
+.config-form select,
+.config-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: border-color 0.2s;
+    margin-bottom: 8px;
+}
+.config-form input:focus,
+.config-form select:focus,
+.config-form textarea:focus {
+    border-color: #0078d7;
+    outline: none;
+}
+.config-form button {
+    grid-column: span 2;
+    padding: 12px;
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+}
+.config-form button:hover {
+    background: #005fa3;
+}
+.add-user {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: background 0.2s;
+}
+.add-user:hover {
+    background: #218838;
+}
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+.user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.user-table th {
+    background: #f0f0f0;
+    color: #333;
+}
+.user-table button {
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-right: 4px;
+    transition: background 0.2s;
+}
+.user-table button:hover {
+    background: #005fa3;
+}
+@media (max-width: 700px) {
+    .config-page {
+        padding: 16px 4px;
+    }
+    .config-form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}

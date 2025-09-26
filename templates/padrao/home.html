@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">GestCleans</a>
+            <ul class="navbar-menu">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="/login" class="btn-primary">Entrar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Gerenciamento de Clínica Completo</h1>
+            <p>Gerencie sua clínica com eficiência. Agende consultas, controle pacientes e otimize seus processos com nossa plataforma.</p>
+            <div class="hero-buttons">
+                <a href="#planos" class="btn-primary">Começar Agora</a>
+                <a href="#sobre" class="btn-secondary">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="recursos">
+        <div class="features-container">
+            <h2 class="section-title">Recursos Principais</h2>
+            <p class="section-subtitle">Tudo que você precisa para gerenciar sua clínica de forma eficiente e profissional.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Gestão de Pacientes</h3>
+                    <p>Cadastre e gerencie todos os dados dos seus pacientes de forma segura e organizada.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Agenda Inteligente</h3>
+                    <p>Agende consultas, visualize horários disponíveis e gerencie compromissos com facilidade.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Protocolos</h3>
+                    <p>Acesse e gerencie todos os procedimentos operacionais padrão da sua clínica.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Controle de Atendimentos</h3>
+                    <p>Registre e acompanhe todos os atendimentos realizados com histórico completo.</p>
+                </div>
+                
+                <!-- <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Relatórios e Analytics</h3>
+                    <p>Visualize dados importantes sobre sua clínica com relatórios detalhados.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Segurança Total</h3>
+                    <p>Seus dados estão protegidos com criptografia de ponta e backups automáticos.</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="planos">
+        <div class="pricing-container">
+            <h2 class="section-title">Planos e Preços</h2>
+            <p class="section-subtitle">Escolha o plano ideal para sua clínica e comece a otimizar seus processos hoje mesmo.</p>
+            
+            <div class="pricing-grid">
+                <!-- <div class="pricing-card">
+                    <div class="pricing-name">Básico</div>
+                    <div class="pricing-price">R$ 99</div>
+                    <div class="pricing-period">por mês</div>
+                    <ul class="pricing-features">
+                        <li>Até 100 pacientes</li>
+                        <li>Agenda básica</li>
+                        <li>Relatórios simples</li>
+                        <li>Suporte por email</li>
+                        <li>Backup automático</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Escolher Plano</a>
+                </div> -->
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-name">Base</div>
+                    <div class="pricing-price">R$9,99</div>
+                    <div class="pricing-period">por mês</div>
+                    <ul class="pricing-features">
+                        <li>Até 50 pacientes</li>
+                        <li>Agenda básica</li>
+                        <li>Protocolos</li>
+                        <li>Integração com sistemas</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Escolher Plano</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-name">Pro</div>
+                    <div class="pricing-price">R$29,99</div>
+                    <div class="pricing-period">por mês</div>
+                    <ul class="pricing-features">
+                        <li>Plano base</li>
+                        <li>Pacientes ilimitados</li>
+                        <li>Todas as funcionalidades</li>
+                        <li>Personalização completa</li>
+                    </ul>
+                    <a href="#" class="btn-primary">Escolher Plano</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="features" id="sobre">
+        <div class="features-container">
+            <h2 class="section-title">Sobre Nós</h2>
+            <p class="section-subtitle">Somos especialistas em tecnologia, desenvolvendo soluções que transformam a gestão de clínicas.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Nossa Missão</h3>
+                    <p>Simplificar a gestão de clínicas através de tecnologia inovadora e fácil de usar.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Nossa Visão</h3>
+                    <p>Ser a plataforma líder em gestão de clínica, conectando tecnologia e gestão de forma eficiente.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Nossos Valores</h3>
+                    <p>Transparência, inovação, segurança e compromisso com a excelência em tudo que fazemos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Pronto para Transformar sua Clínica?</h2>
+            <p>Junte-se a centenas de clínicas que já confiam em nossa plataforma para gerenciar seus processos de forma eficiente.</p>
+            <a href="#planos" class="btn-primary">Começar Gratuitamente</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 A CLINICA. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+{% endblock %}
+
+

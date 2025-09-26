@@ -1,0 +1,164 @@
+{% extends 'logado/navbar.html' %}
+
+{% block head_conteudo %}
+    <title>Agenda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/agenda.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+    <div class="container-agenda">
+        <aside class="sidebar-agenda">
+            <h2>Filtros</h2>
+            <form action="/agenda" method="GET">
+                <div class="filtro">
+                    <label for="filtro-data">Data:</label>
+                    <input type="date" id="filtro-data" name="filtro-data">
+                </div>
+                <button type="submit" class="filtrar-agenda">Filtrar</button>
+            </form>
+        </aside>
+
+        <main class="main-agenda">
+            <h1>Agenda</h1>
+
+            <!-- <div id="calendario-container">
+                <div class="calendario-header">
+                    <button id="prev-month">&lt;</button>
+                    <h2 id="current-month"></h2>
+                    <button id="next-month">&gt;</button>
+                </div>
+                <table id="calendario">
+                    <thead>
+                        <tr>
+                            <th>Dom</th>
+                            <th>Seg</th>
+                            <th>Ter</th>
+                            <th>Qua</th>
+                            <th>Qui</th>
+                            <th>Sex</th>
+                            <th>Sáb</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+
+            <section class="agendamentos">
+                <div class="agendamentos-header">
+                    <h2>Agendamentos</h2>
+                    <button class="adicionar-agendamento">
+                        <span>+</span> Adicionar Agendamento
+                    </button>
+                </div>
+                <ul id="lista-agendamentos">
+                    {% if not agendamentos and not filtro_data%}
+                        <p id="mensagem-sem-agendamentos">Nenhum agendamento cadastrado.</p>
+                    {% elif not agendamentos and filtro_data %}
+                        <p id="mensagem-sem-agendamentos">Nenhum agendamento cadastrado para o dia selecionado.</p>
+                    {% else %}
+                        {% for agendamento in agendamentos %}
+                            <li>
+                                <div class="agendamento-item {% if agendamento.passou %}agendamento-passado{% endif %}">
+                                    <span class="data">{{ agendamento.data.strftime('%d/%m/%Y') }}</span> - <span class="horario">{{ agendamento.hora.strftime('%H:%M') }}</span> - <span class="paciente">{{ agendamento.paciente.nome_completo }}</span> - <span class="procedimento">{{ agendamento.nome_procedimento }}</span>
+                                    <button class="editar-agendamento"
+                                        data-id="{{ agendamento.id }}"
+                                        data-data="{{ agendamento.data.strftime('%Y-%m-%d') }}"
+                                        data-horario="{{ agendamento.hora.strftime('%H:%M') }}"
+                                        data-paciente-id="{{ agendamento.paciente.id }}"
+                                        data-procedimento="{{ agendamento.nome_procedimento|replace("'", "\\'") }}">Editar</button>
+                                    <form class='cancelar-agendamento' action="/agenda/cancelar/{{ agendamento.id }}" method="POST">
+                                        <button type="submit">Cancelar</button>
+                                    </form>
+                                </div>
+                            </li>
+                            {% endfor %}    
+                        </ul>
+                    {% endif %}
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para adicionar agendamento -->
+    <div class="modal" id="modal-agendamento">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Novo Agendamento</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form class="form-agendamento" action="/agenda/adicionar" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <label for="paciente">Paciente:</label>
+                    <select id="paciente" name="paciente" required>
+                        <option value="">Selecione um paciente</option>
+                        {% for paciente in pacientes %}
+                            <option value="{{ paciente.id }}">{{ paciente.nome_completo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Horário:</label>
+                    <input type="time" id="horario" name="horario" required>
+                </div>
+                <div class="form-group">
+                    <label for="procedimento">Procedimento:</label>
+                    <input type="text" id="procedimento" name="procedimento" placeholder="Digite o nome do procedimento" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="btn-salvar">Salvar Agendamento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar agendamento -->
+    <div id="modal-editar-agendamento" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Agendamento</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form class="form-agendamento" id="form-editar-agendamento" method="POST">
+                {{ form.hidden_tag() }}
+                <input type="hidden" id="editar-agendamento-id" name="agendamento_id">
+                <div class="form-group">
+                    <label for="editar-paciente">Paciente:</label>
+                    <select id="editar-paciente" name="paciente" required>
+                        <option value="">Selecione um paciente</option>
+                        {% for paciente in pacientes %}
+                            <option value="{{ paciente.id }}">{{ paciente.nome_completo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editar-data">Data:</label>
+                    <input type="date" id="editar-data" name="data" required>
+                </div>
+                <div class="form-group">
+                    <label for="editar-horario">Horário:</label>
+                    <input type="time" id="editar-horario" name="horario" required>
+                </div>
+                <div class="form-group">
+                    <label for="editar-procedimento">Procedimento:</label>
+                    <input type="text" id="editar-procedimento" name="procedimento" placeholder="Digite o nome do procedimento" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="btn-salvar">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/agenda.js') }}"></script>
+{% endblock %}

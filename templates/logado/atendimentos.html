@@ -1,0 +1,52 @@
+{% extends 'logado/navbar.html'%}
+
+{% block head_conteudo %}
+    <title>Atendimentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/atendimentos.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+    <div class="container">
+        <h1>Lista de Atendimentos do Paciente: {{ paciente.nome }}</h1>
+
+        {% if atendimentos %} 
+        <table class="tabela-pacientes">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Procedimento</th>
+                    <th>Data do Procedimento</th>
+                    <th>Hora do Procedimento</th>
+                    <th>Data do Retorno</th>
+                    <th>Hora do Retorno</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atendimento in atendimentos %}
+                <tr>
+                    <td>{{ atendimento.id }}</td>
+                    <td>{{ atendimento.nome_procedimento }}</td>
+                    <td>{{ atendimento.data_procedimento }}</td>
+                    <td>{{ atendimento.hora_procedimento if atendimento.hora_procedimento else '-' }}</td>
+                    <td>{{ atendimento.data_retorno }}</td>
+                    <td>{{ atendimento.hora_retorno if atendimento.hora_retorno else '-' }}</td>
+                    <td>
+                        <a href="/atendimento/atendimento/{{ atendimento.id }}" class="btn btn-info">Ver / Editar</a>
+                        <form action="/atendimento/excluir/{{ atendimento.id }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este atendimento?')">
+                            <button class="btn btn-danger btn-excluir" data-paciente-id="{{ atendimento.id }}">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Nenhum atendimento cadastrado para o paciente {{ paciente.nome}}.</p>
+        {% endif %} 
+
+        <div class="acoes-pagina">
+            <a href="/atendimento/cadastrar/{{ paciente.id }}" class="btn btn-primary">Cadastrar Novo Atendimento</a>
+        </div>
+    </div>
+{% endblock %}

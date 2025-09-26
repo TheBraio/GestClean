@@ -1,0 +1,72 @@
+{% extends 'logado/navbar.html' %}
+
+{% block head_conteudo %}
+    <title>Editar Prontuário do Paciente</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/atendimento.css') }}"> 
+{% endblock %}
+
+{% block conteudo %}
+    <form action="/atendimento/editar/{{ atendimento.id }}"  method='POST' class="container" enctype="multipart/form-data">
+        <h1>Editar Prontuário do Paciente {{ paciente_nome }}</h1>
+
+
+        <section class="procedimento">
+            <h2>Procedimento</h2>
+            <div class="campo">
+                <label for="data-procedimento">Data do Procedimento:</label>
+                <input type="date" id="data-procedimento" name="data-procedimento" value='{{ atendimento.data_procedimento }}'>
+            </div>
+            <div class="campo">
+                <label for="hora-procedimento">Hora do Procedimento:</label>
+                <input type="time" id="hora-procedimento" name="hora-procedimento" value="{{ atendimento.hora_procedimento.strftime('%H:%M') if atendimento.hora_procedimento else '' }}">
+            </div>
+            <div class="campo">
+                <label for="nome-procedimento">Nome do Procedimento:</label>
+                <input type="text" id="nome-procedimento" name="nome-procedimento" value="{{ atendimento.nome_procedimento }}">
+            </div>
+        </section>
+
+        <section class="assinaturas">
+            <h2>Assinaturas</h2>
+            <div class="campo">
+                <label for="termo-consentimento">Termo de Consentimento:</label>
+                <input type="file" id="termo-consentimento" name="termo-consentimento">
+                {{ if atendimento.termo_consentimento }}
+                    <a href="/arquivo/download/termo-responsabilidade/{{ atendimento.id }}">Termo de Consentimento</a>
+                {% else %}
+                    <p>Nenhum termo de consentimento anexado.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="preparo-evolucao">
+            <h2>Preparo e Evolução do Paciente</h2>
+            <div class="campo">
+                <label for="preparo">Preparo:</label>
+                <textarea id="preparo" name="preparo" >{{ atendimento.preparo }}</textarea>
+            </div>
+            <div class="campo">
+                <label for="evolucao">Evolução:</label>
+                <textarea id="evolucao" name="evolucao">{{ atendimento.evolucao }}</textarea>
+            </div>
+            <div class="campo">
+                <label for="retorno">Retorno do Paciente (Data):</label>
+                <input type="date" id="retorno" name="data-retorno" value="{{ atendimento.data_retorno }}">
+            </div>
+            <div class="campo">
+                <label for="hora-retorno">Hora do Retorno:</label>
+                <input type="time" id="hora-retorno" name="hora-retorno" value="{{ atendimento.hora_retorno.strftime('%H:%M') if atendimento.hora_retorno else '' }}">
+            </div>
+            <div class="campo">
+                <label for="observacoes-retorno">Observações do Retorno:</label>
+                <textarea id="observacoes-retorno" name="observacoes-retorno">{{ atendimento.observacoes_retorno }}</textarea>
+            </div>
+        </section>
+
+        <div class="botoes-container">
+            <button type="submit" class="btn-salvar">Salvar Alterações</button>
+            <a href="/atendimento/atendimentos/{{ atendimento.paciente.id }}" class="btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}

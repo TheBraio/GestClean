@@ -1,0 +1,21 @@
+.tabela-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-pacientes th, .tabela-pacientes td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabela-pacientes th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+
+.acoes-pagina {
+    margin-top: 20px;
+}

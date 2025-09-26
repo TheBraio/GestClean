@@ -1,0 +1,102 @@
+{% extends 'logado/navbar.html' %}
+
+{% block head_conteudo %}
+    <title>Editar Paciente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro_paciente.css') }}">
+    <script src="{{ url_for('static', filename='scripts/editar_paciente.js') }}"></script>
+{% endblock %}
+
+{% block conteudo %}
+    <div class="container">
+        <h1>Editar Paciente</h1>
+
+        <form action="/editar_paciente/{{ paciente.id }}" method="post" enctype="multipart/form-data">
+            <section class="dados-pessoais">
+                <h2>Dados Pessoais</h2>
+                <div class="campo">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" value="{{paciente.nome_completo}}" required>
+                </div>
+                <div class="campo">
+                    <label for="nascimento">Data de Nascimento:</label>
+                    <input type="date" id="nascimento" name="nascimento" value="{{ paciente.data_nascimento }}" required>
+                </div>
+                <div class="campo">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" value="{{ paciente.cpf }}" required>
+                </div>
+            </section>
+
+            <section class="contato">
+                <h2>Contato</h2>
+                <div class="campo">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" value="{{ paciente.endereco }}"> 
+                </div>
+                <div class="campo">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" value="{{ paciente.telefone }}">
+                </div>
+                <div class="campo">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" value="{{ paciente.email }}">
+                </div>
+            </section>
+
+            <section class="documentos">
+                <h2>Arquivos</h2>
+                <p>Ao excluir/adicionar um arquivo não é necessário salvar.</p>
+                <div class="files-list-container" id="filesList">
+                    {% for arquivo in paciente.arquivos %}
+                        <div class="file-item">
+                            <p class="file-info"><span class="label">Título:</span> <span class="file-title">{{arquivo.titulo}}</span></p>
+                            <p class="file-info"><span class="label">Arquivo:</span> <a href="/arquivo/download/{{arquivo.id}}"><span class="file-name">{{arquivo.filepath | filename}}</span> </a> </p>
+                            <button data-id="{{arquivo.id}}" type="button" class="remove-file-button">X</button>
+                        </div>
+                    {%endfor%}
+                    <template id="fileContainerTemplate">
+                        <div class="file-item">
+                            <p class="file-info"><span class="label">Título:</span> <span class="file-title"></span></p>
+                            <p class="file-info"><span class="label">Arquivo:</span> <a id="link-baixar-arquivo"><span class="file-name"></span> </a> </p>
+                            <button type="button" class="remove-file-button">X</button>
+                        </div>
+                    </template>
+                </div>
+                
+                <button type="button" id="adicionar-arquivo" class="btn btn-add btn-add-arquivo" onclick="abrirModalPop()">Adicionar Arquivo</button>
+
+                
+                
+            </section>
+
+            <div class="botoes-container">
+                <button type="submit" class="btn-salvar">Salvar Alterações</button>
+                <a href="/paciente/pacientes" class="btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal para adicionar Arquivo -->
+    <div id="modal-pop" class="modal modal-arquivo">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Novo Arquivo</h3>
+                <span class="close" onclick="fecharModalPop()">&times;</span>
+            </div>
+            <form data-id="{{ paciente.id }}" class="form-pop" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nome">Título:</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Digite o título do arquivo" required>
+                </div>
+                <div class="form-group">
+                    <label for="arquivo">Arquivo:</label>
+                    <input type="file" id="arquivo" name="arquivo" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-salvar-modal">Salvar Arquivo</button>
+                    <button type="button" onclick="fecharModalPop()" class="btn-cancelar-modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

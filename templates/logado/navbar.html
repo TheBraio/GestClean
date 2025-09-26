@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <script src="{{ url_for('static', filename='scripts/navbar.js') }}"></script>
+
+
+    {% block head_conteudo %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">Clínica</div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="/painel">
+                <span class="icon">📊</span>
+                Painel
+            </a></li>
+            <li><a href="/paciente/pacientes">
+                <span class="icon">👥</span>
+                Pacientes
+            </a></li>
+            <li><a href="/agenda">
+                <span class="icon">📅</span>
+                Agenda
+            </a></li>
+            <li><a href="/protocolo/protocolos">
+                <span class="icon">📋</span>
+                Protocolos
+            </a></li>
+            <li><a href="#">
+                <span class="icon">💰</span>
+                Financeiro (A fazer)
+            </a></li>
+            <li><a href="#">
+                <span class="icon">📈</span>
+                Relatórios (A fazer)
+            </a></li>
+            <li><a href="/configuracoes">
+                <span class="icon">⚙️</span>
+                Configurações
+            </a></li>
+            <li class="logout"><a href="/logout">
+                <span class="icon">🚪</span>
+                Sair
+            </a></li>
+        </ul>
+    </aside>
+    <div class="conteudo-principal body">
+        {% block conteudo %}
+        {% endblock %}
+    </div>
+{% endblock %}
+

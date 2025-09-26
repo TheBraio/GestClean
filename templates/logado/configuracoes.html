@@ -1,0 +1,152 @@
+{% extends 'logado/navbar.html' %}
+{% block head_conteudo %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/configuracoes.css') }}">
+{% endblock %}
+{% block conteudo %}
+<div class="config-page">
+    <h1>Configurações</h1>
+    <!-- <div class="config-section">
+        <h2>👤 Perfil da Clínica</h2>
+        <form class="config-form">
+            <label>Nome da clínica</label>
+            <input type="text" name="nome_clinica" placeholder="Nome da clínica">
+            <label>CNPJ / CPF</label>
+            <input type="text" name="cnpj_cpf" placeholder="CNPJ ou CPF">
+            <label>Endereço</label>
+            <input type="text" name="endereco" placeholder="Endereço">
+            <label>Telefone</label>
+            <input type="text" name="telefone" placeholder="Telefone">
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="E-mail">
+            <label>Redes sociais</label>
+            <input type="text" name="redes_sociais" placeholder="Instagram, Facebook...">
+            <label>Logo da empresa</label>
+            <input type="file" name="logo">
+            <label>Tema do sistema</label>
+            <select name="tema">
+                <option value="claro">Claro</option>
+                <option value="escuro">Escuro</option>
+            </select>
+        </form>
+    </div> -->
+    <!-- <div class="config-section">
+        <h2>👩‍⚕️ Equipe / Usuários</h2>
+        <button class="add-user">Adicionar profissional</button>
+        <table class="user-table">
+            <thead>
+                <tr><th>Nome</th><th>E-mail</th><th>Função</th><th>Permissões</th><th>Ações</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Maria</td><td>maria@email.com</td><td>Recepcionista</td><td>Ver agenda</td><td><button>Editar</button><button>Redefinir Senha</button></td></tr>
+            </tbody>
+        </table>
+    </div> -->
+    <!-- <div class="config-section">
+        <h2>📅 Agenda e Atendimento</h2>
+        <form class="config-form">
+            <label>Duração padrão das consultas</label>
+            <input type="number" name="duracao_consulta" placeholder="Minutos">
+            <label>Dias e horários de funcionamento</label>
+            <input type="text" name="horarios_funcionamento" placeholder="Ex: Seg-Sex 08:00-18:00">
+            <label>Intervalo entre atendimentos</label>
+            <input type="number" name="intervalo_atendimento" placeholder="Minutos">
+            <label>Tempo de tolerância para atraso</label>
+            <input type="number" name="tolerancia_atraso" placeholder="Minutos">
+            <label>Permitir agendamentos online</label>
+            <select name="agendamento_online">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+        </form>
+    </div> -->
+    <!-- <div class="config-section">
+        <h2>💸 Finanças e Pagamentos</h2>
+        <form class="config-form">
+            <label>Métodos de pagamento aceitos</label>
+            <input type="text" name="pagamento_aceito" placeholder="Cartão, Pix, Dinheiro">
+            <label>Comissões de profissionais (%)</label>
+            <input type="number" name="comissao" placeholder="%">
+            <label>Valor padrão dos serviços</label>
+            <input type="number" name="valor_servico" placeholder="R$">
+            <label>Emissão de recibos automáticos</label>
+            <select name="recibo_automatico">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+        </form>
+    </div> -->
+    <!-- <div class="config-section">
+        <h2>💬 Comunicação</h2>
+        <form class="config-form">
+            <label>Mensagens automáticas</label>
+            <select name="mensagem_automatica">
+                <option value="whatsapp">WhatsApp</option>
+                <option value="sms">SMS</option>
+                <option value="email">E-mail</option>
+            </select>
+            <label>Editar textos padrão</label>
+            <textarea name="texto_padrao" rows="3" placeholder="Texto de confirmação, lembrete, agradecimento..."></textarea>
+            <label>Habilitar envios</label>
+            <select name="habilitar_envio">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+        </form>
+    </div> -->
+    <!-- <div class="config-section">
+        <h2>📄 Prontuários e Documentos</h2>
+        <form class="config-form">
+            <label>Modelos de protocolos</label>
+            <input type="text" name="modelos_protocolos" placeholder="Modelos">
+            <label>Campos obrigatórios</label>
+            <input type="text" name="campos_obrigatorios" placeholder="Campos obrigatórios">
+            <label>Upload de termos de consentimento</label>
+            <input type="file" name="termos_consentimento">
+        </form> 
+    </div> -->
+    <div class="config-section">
+        <h2>🔒 Segurança</h2>
+        <form action="/configuracoes/trocar-senha" class="config-form" method="post">
+            <label>Senha atual</label>
+            <input type="password" name="senha_atual" placeholder="Sua senha" required>
+            <label>Nova senha</label>
+            <input type="password" name="nova_senha" placeholder="Nova senha" required>
+            <!-- <label>Autenticação em dois fatores (2FA)</label>
+            <select name="autenticacao_2fa">
+                <option value="ativar">Ativar</option>
+                <option value="desativar">Desativar</option>
+            </select> -->
+            <!-- <label>Backup manual de dados</label> -->
+            <button type="submit">Alterar senha</button>
+        </form>
+    </div>
+    <!-- <div class="config-section">
+        <h2>🧪 Integrações</h2>
+        <form class="config-form">
+            <label>WhatsApp</label>
+            <input type="text" name="whatsapp_integracao" placeholder="Número ou API">
+            <label>Plataformas de pagamento</label>
+            <input type="text" name="pagamento_integracao" placeholder="API ou plataforma">
+            <label>API externa</label>
+            <input type="text" name="api_externa" placeholder="URL ou chave de API">
+        </form>
+    </div> -->
+    <!-- <div class="config-section">
+        <h2>🧩 Personalização</h2>
+        <form class="config-form">
+            <label>Idioma do sistema</label>
+            <select name="idioma">
+                <option value="pt">Português</option>
+                <option value="en">Inglês</option>
+            </select>
+            <label>Layout de visualização</label>
+            <select name="layout">
+                <option value="claro">Claro</option>
+                <option value="escuro">Escuro</option>
+            </select>
+            <label>Exibir/ocultar colunas nas tabelas</label>
+            <input type="text" name="colunas_tabela" placeholder="Colunas visíveis">
+        </form>
+    </div> -->
+</div>
+{% endblock %}

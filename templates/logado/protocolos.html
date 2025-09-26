@@ -1,0 +1,78 @@
+{% extends 'logado/navbar.html' %}
+
+{% block head_conteudo %}
+    <title>Protocolos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/protocolos.css') }}">
+    <script defer src="{{ url_for('static', filename='scripts/protocolos.js') }}"></script>
+{% endblock %}
+
+{% block conteudo %}
+    <div class="container">
+        <div class="header-container">
+            <h1>Lista de Protocolos</h1>
+            <button type="button" id="adicionar-arquivo" class="btn btn-primary adicionar-protocolo-btn">Adicionar Protocolo</button>
+        </div>
+
+        {% if protocolos %} 
+        <table class="tabela-protocolos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Protocolo</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for protocolo in protocolos %}
+                <tr>
+                    <td>{{ protocolo.id }}</td>
+                    <td>{{ protocolo.nome }}</td>
+                    <td>{{ protocolo.descricao }}</td>
+                    <td>
+                        <div class="acoes-buttons">
+                            <a href="#" class="btn btn-info btn-editar-protocolo" data-protocolo-id="{{ protocolo.id }}" data-protocolo-nome="{{ protocolo.nome }}" data-protocolo-descricao="{{ protocolo.descricao }}">Editar</a>
+                            <form action="/protocolo/excluir/{{ protocolo.id }}" method="POST" class="form-excluir-protocolo">
+                                <button type="submit" class="btn btn-danger btn-excluir">Excluir</button>
+                            </form>
+                            <a href="/protocolo/download/{{ protocolo.id }}" class="btn btn-primary">Download</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Nenhum protocolo cadastrado.</p>
+        {% endif %}
+    </div>
+    
+
+    <!-- Modal para adicionar POP -->
+    <div id="modal-pop" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Novo Protocolo</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="form-protocolo" class="form-pop" action="/protocolo/adicionar" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nome">Nome do Protocolo:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome do Protocolo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="10" placeholder="Digite a descrição do protocolo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label id="label-arquivo" for="arquivo">Arquivo:</label>
+                    <input id='input-arquivo' type="file" name="arquivo" required>
+                </div>
+                <div class="form-actions">
+                    <button id="btn-salvar" type="submit" class="btn-salvar">Salvar Protocolo</button>
+                    <button type="button" class="btn-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

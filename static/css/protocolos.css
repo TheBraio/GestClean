@@ -1,0 +1,35 @@
+.adicionar-protocolo-btn {
+    margin-top: 10px;
+}
+
+.form-pop{
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tabela-protocolos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-protocolos th, .tabela-protocolos td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.tabela-protocolos th {
+    background-color: #f2f2f2;
+}
+
+.acoes-buttons {
+    display: flex;
+    gap: 5px;
+}

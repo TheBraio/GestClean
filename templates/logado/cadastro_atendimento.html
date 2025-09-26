@@ -1,0 +1,67 @@
+{% extends 'logado/navbar.html' %}
+
+{% block head_conteudo %}
+    <title>Atendimento do Paciente</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/atendimento.css') }}"> 
+{% endblock %}
+
+{% block conteudo %}
+    <form action="/atendimento/cadastrar/{{ paciente.id }}"  method='POST' class="container" enctype="multipart/form-data">
+        <h1>Atendimento do Paciente {{ paciente.nome }}</h1>
+
+
+        <section class="procedimento">
+            <h2>Procedimento</h2>
+            <div class="campo">
+                <label for="data-procedimento">Data do Procedimento:</label>
+                <input type="date" id="data-procedimento" name="data-procedimento">
+            </div>
+            <div class="campo">
+                <label for="hora-procedimento">Hora do Procedimento:</label>
+                <input type="time" id="hora-procedimento" name="hora-procedimento">
+            </div>
+            <div class="campo">
+                <label for="nome-procedimento">Nome do Procedimento:</label>
+                <input type="text" id="nome-procedimento" name="nome-procedimento">
+            </div>
+        </section>
+
+        <section class="assinaturas">
+            <h2>Assinaturas</h2>
+            <div class="campo">
+                <label for="termo-consentimento">Termo de Consentimento:</label>
+                <input type="file" id="termo-consentimento" name="termo-consentimento">
+            </div>
+        </section>
+
+        <section class="preparo-evolucao">
+            <h2>Preparo e Evolução do Paciente</h2>
+            <div class="campo">
+                <label for="preparo">Preparo:</label>
+                <textarea id="preparo" name="preparo"></textarea>
+            </div>
+            <div class="campo">
+                <label for="evolucao">Evolução:</label>
+                <textarea id="evolucao" name="evolucao"></textarea>
+            </div>
+            <div class="campo">
+                <label for="retorno">Retorno do Paciente (Data):</label>
+                <input type="date" id="retorno" name="data-retorno">
+            </div>
+            <div class="campo">
+                <label for="hora-retorno">Hora do Retorno:</label>
+                <input type="time" id="hora-retorno" name="hora-retorno">
+            </div>
+            <div class="campo">
+                <label for="observacoes-retorno">Observações do Retorno:</label>
+                <textarea id="observacoes-retorno" name="observacoes-retorno"></textarea>
+            </div>
+        </section>
+
+        <div class="botoes-container">
+            <button type="submit" class="btn-salvar">Salvar Atendimento</button>
+            <a href="/atendimento/atendimentos/{{ paciente.id }}" class="btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}

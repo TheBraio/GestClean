@@ -1,0 +1,196 @@
+{% extends "logado/navbar.html" %}
+
+{% block head_conteudo %}
+    <title>Painel de Gestão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/painel.css') }}">
+    <script src="{{ url_for('static', filename='scripts/painel.js') }}"></script>
+{% endblock %}
+
+{% block conteudo %}
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Dashboard</h1>
+            <div class="user-info">
+                <span>Bem-vindo(a), {{ usuario.nome }}</span>
+                <!-- <div class="user-avatar"><i class="fa-solid fa-user"></i></div> -->
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <!-- <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Pacientes Ativos</span>
+                    <span class="stat-icon">👥</span>
+                </div>
+                <div class="stat-value"></div>
+                <div class="stat-change">+ este mês</div>
+            </div> -->
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Novos Pacientes(este mês)</span>
+                    <span class="stat-icon">🆕</span>
+                </div>
+                <div class="stat-value">{{ pacientes['novos'] }}</div>
+                {% if pacientes['percentual'] > 0 %}
+                    <div class="stat-change">+{{ pacientes['percentual'] }}% este mês</div>
+                {% elif pacientes['percentual'] < 0 %}
+                    <div class="stat-change negative">{{ pacientes['percentual'] }}% este mês</div>
+                {% else %}
+                    <div>0% este mês</div>
+                {% endif %}
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Consultas Hoje</span>
+                    <span class="stat-icon">📅</span>
+                </div>
+                <div class="stat-value">{{ consultas['hoje'] }}</div>
+                {% if consultas['percentual'] > 0 %}
+                    <div class="stat-change">+{{ consultas['percentual'] }}% vs ontem</div>
+                {% elif consultas['percentual'] < 0 %}
+                    <div class="stat-change negative">{{ consultas['percentual'] }}% vs ontem</div>
+                {% else %}
+                    <div>0% vs ontem</div>
+                {% endif %}
+            </div>
+
+            <!-- <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Faturamento Mensal</span>
+                    <span class="stat-icon">💰</span>
+                </div>
+                <div class="stat-value"></div>
+                <div class="stat-change">+ este mês</div>
+            </div> -->
+
+            <!-- <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Satisfação</span>
+                    <span class="stat-icon">⭐</span>
+                </div>
+                <div class="stat-value"></div>
+                <div class="stat-change">+ este mês</div>
+            </div> -->
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div id="novo_paciente" class="action-card">
+                <div class="action-icon">➕</div>
+                <div class="action-title">Novo Paciente</div>
+                <div class="action-description">Cadastrar novo paciente</div>
+            </div>
+
+            <div id="agendar_consulta" class="action-card">
+                <div class="action-icon">📅</div>
+                <div class="action-title">Agendar Consulta</div>
+                <div class="action-description">Marcar nova consulta</div>
+            </div>
+           
+            <div id="protocolos" class="action-card">
+                <div class="action-icon">📋</div>
+                <div class="action-title">Visualizar Protocolos</div>
+                <div class="action-description">Visualizar os protocolos cadastrados</div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <!-- Main Chart -->
+            <!-- <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Consultas por Mês</h3>
+                    <div class="chart-actions">
+                        <button class="btn-small active" data-period="month">Mês</button>
+                        <button class="btn-small" data-period="quarter">Trimestre</button>
+                        <button class="btn-small" data-period="year">Ano</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="consultasChart" width="400" height="200"></canvas>
+                </div>
+            </div> -->
+
+            <!-- Recent Activity -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">Atividade Recente</h3>
+                </div>
+                <ul class="activity-list">
+                    {% for atividades in usuario.atividades %}
+                        <li class="activity-item">
+                            <div class="activity-icon {{ atividade.tipo }}">{{atividade.icon}}</div>
+                            <div class="activity-content">
+                                <h4>{{ atividade.titulo }}</h4>
+                                <p>{{ atividade.descricao }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    <!-- <li class="activity-item">
+                        <div class="activity-icon consultation">📅</div>
+                        <div class="activity-content">
+                            <h4>Consulta Agendada</h4>
+                            <p>Maria Silva - 14:30</p>
+                        </div>
+                    </li>
+                    <li class="activity-item">
+                        <div class="activity-icon patient">👤</div>
+                        <div class="activity-content">
+                            <h4>Novo Paciente</h4>
+                            <p>João Santos cadastrado</p>
+                        </div>
+                    </li>
+                    <li class="activity-item">
+                        <div class="activity-icon payment">💰</div>
+                        <div class="activity-content">
+                            <h4>Pagamento Recebido</h4>
+                            <p>R$ 150,00 - Consulta</p>
+                        </div>
+                    </li>
+                    <li class="activity-item">
+                        <div class="activity-icon consultation">📅</div>
+                        <div class="activity-content">
+                            <h4>Consulta Concluída</h4>
+                            <p>Ana Costa - 10:00</p>
+                        </div>
+                    </li>
+                     -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Additional Stats -->
+        <div class="stats-grid">
+            <!-- <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Taxa de Ocupação</span>
+                    <span class="stat-icon">📊</span>
+                </div>
+                <div class="stat-value">87%</div>
+                <div class="stat-change">+3% este mês</div>
+            </div> -->
+
+            <!-- <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Tempo Médio Consulta</span>
+                    <span class="stat-icon">⏱️</span>
+                </div>
+                <div class="stat-value">25min</div>
+                <div class="stat-change">-2min este mês</div>
+            </div> -->
+
+            
+
+            <!-- <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-title">Cancelamentos</span>
+                    <span class="stat-icon">❌</span>
+                </div>
+                <div class="stat-value">3</div>
+                <div class="stat-change negative">-25% este mês</div>
+            </div> -->
+        </div>
+    </div>
+{% endblock %}
